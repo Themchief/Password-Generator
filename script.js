@@ -112,13 +112,24 @@ function getPasswordOptions() {
       hasUppercaseCharacters === false) {alert(` Must select at least from each set`)}
       
       
+      let passWordoptions = {
+        length: length,
+        hasSpecialCharacters: hasSpecialCharacters,
+        hasNumericCharacters: hasNumericCharacters,
+        hasLowercaseCharacters: hasLowercaseCharacters ,
+        hasUppercaseCharacters: hasUppercaseCharacters,
+
+      }
+
+      console.log(passWordoptions);
+      return passWordoptions;
     }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
    let randomIndex = Math.floor(Math.random() * arr.length) 
    let randomElement = arr[randomIndex];
-   
+
    return randomElement;
 }
 
@@ -126,6 +137,44 @@ function getRandom(arr) {
 function generatePassword() {
 
   let options = getPasswordOptions();
+
+  console.log(options);
+  let result = []
+
+  let possibleCharacter = []
+
+  let guaranteedCharacter = []
+
+  if(options.hasSpecialCharacters){
+    possibleCharacter = possibleCharacter.concat(specialCharacters);
+    guaranteedCharacter.push(getRandom(specialCharacters))
+  }
+
+ 
+  if(options.hasNumericCharacters){
+    possibleCharacter = possibleCharacter.concat(numericCharacters);
+    guaranteedCharacter.push(getRandom(numericCharacters))
+  }
+
+  if(options.hasLowercaseCharacters){
+    possibleCharacter = possibleCharacter.concat(lowerCasedCharacters);
+    guaranteedCharacter.push(getRandom(lowerCasedCharacters))
+  }
+
+  if(options.hasUppercaseCharacters){
+    possibleCharacter = possibleCharacter.concat(upperCasedCharacters);
+    guaranteedCharacter.push(getRandom(upperCasedCharacters))
+  }
+
+
+  for(let i = 0; i < options.length; i++){
+    var generated =getRandom(possibleCharacter);
+    console.log(generated);
+    result.push(generated);
+  }
+  console.log(result);
+
+  return result.join("")
 }
 
 // Get references to the #generate element
