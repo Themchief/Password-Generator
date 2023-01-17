@@ -90,17 +90,42 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
+  let length =parseInt(
+    prompt("Enter the number of characters you would like your password to contain")
+  )
+  if(isNaN(length) === true) { 
+    alert(`Password must be entered as a number`)}
+    if(length <=10){
+    alert(`Password must have a minimum of characters`);
+    return;}
+    if(length >= 65){
+      alert(`Password must have no more than 64 characters`);
+      return;}
+      let hasSpecialCharacters = confirm( "Click ok to confirm if special characters are included")
+      let hasNumericCharacters = confirm( "Click ok to confirm if Numeric characters are included")
 
-}
+      let hasLowercaseCharacters = confirm( "Click ok to confirm if Lowercase characters are included")
+      let hasUppercaseCharacters = confirm( "Click ok to confirm if Uppercase characters are included")
+    if(hasSpecialCharacters === false &&
+      hasNumericCharacters === false &&
+      hasLowercaseCharacters === false &&
+      hasUppercaseCharacters === false) {alert(` Must select at least from each set`)}
+      
+      
+    }
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+   let randomIndex = Math.floor(Math.random() * arr.length) 
+   let randomElement = arr[randomIndex];
+   
+   return randomElement;
 }
 
 // Function to generate password with user input
 function generatePassword() {
 
+  let options = getPasswordOptions();
 }
 
 // Get references to the #generate element
